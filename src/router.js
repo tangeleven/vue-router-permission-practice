@@ -6,25 +6,7 @@ import Layout from './layout/index.vue'
 Vue.use(Router)
 
 
-export const routes = [
-  {
-    path: '/',
-    component: Layout,
-    redirect: '/home',
-    meta: {
-      title: '首页'
-    },
-    children: [
-      {
-        path: 'home',
-        name: 'home',
-        component: Home,
-        meta: {
-          title: '首页'
-        }
-      }
-    ]
-  },
+export const asyncRoutes = [
   {
     path: '/about',
     component: Layout,
@@ -86,7 +68,7 @@ export const routes = [
       {
         path: 'share',
         name: 'share',
-        component: () => import(/* webpackChunkName: "info" */ './views/Share.vue'),
+        component: () => import(/* webpackChunkName: "share" */ './views/Share.vue'),
         meta: {
           title: '分享'
         }
@@ -104,7 +86,7 @@ export const routes = [
       {
         path: 'index',
         name: 'consult',
-        component: () => import(/* webpackChunkName: "info" */ './views/Consult.vue'),
+        component: () => import(/* webpackChunkName: "consult" */ './views/Consult.vue'),
         meta: {
           title: '咨询'
         }
@@ -113,8 +95,38 @@ export const routes = [
   },
 ]
 
+export const constRouter = [
+  {
+    path: '/',
+    component: Layout,
+    redirect: '/home',
+    meta: {
+      title: '首页'
+    },
+    children: [
+      {
+        path: 'home',
+        name: 'home',
+        component: Home,
+        meta: {
+          title: '首页'
+        }
+      }
+    ]
+  },
+  {
+    path: '/login',
+    name: 'login',
+    component: () => import(/* webpackChunkName: "login" */ './views/Login.vue'),
+    meta: {
+      title: '登录',
+      hidden: true
+    }
+  }
+]
+
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes
+  routes: constRouter.concat(asyncRoutes)
 })

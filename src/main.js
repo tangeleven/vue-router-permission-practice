@@ -9,6 +9,9 @@ import 'element-ui/lib/theme-chalk/index.css'
 Vue.use(Element)
 
 Vue.config.productionTip = false
+Vue.config.devtools = true
+
+import './permission'
 
 new Vue({
   router,

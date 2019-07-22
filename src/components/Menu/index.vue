@@ -1,6 +1,6 @@
 <template>
   <div>
-    <el-menu class="el-menu-demo" mode="horizontal">
+    <!-- <el-menu class="el-menu-demo" mode="horizontal">
       <el-menu-item index="1"><router-link to="/">首页</router-link></el-menu-item>
       <el-menu-item index="2">
           <el-submenu index="2-1">
@@ -21,21 +21,31 @@
       <el-menu-item index="4"><router-link to="/consult">咨询</router-link></el-menu-item>
     </el-menu>
 
-    <hr />
+    <hr /> -->
 
-    <MenuItem :routerList="routerList"></MenuItem>
+    <!-- <MenuItem :routerList="routerList"></MenuItem> -->
+    <el-menu class="el-menu-demo" mode="horizontal">
+        <menu-item 
+            v-for="route in routerList" 
+            :key="route.path" 
+            :item="route"
+            :base-path="route.path"
+        >
+        </menu-item>
+    </el-menu>
   </div>
 </template>
 
 <script>
 
-import { routes } from '../router.js'
-import MenuItem from './MenuItem'
+import { constRouter, asyncRoutes } from '@/router.js'
+import MenuItem from './MenuItem.vue'
+
 
 export default {
     data() {
         return {
-            routerList: routes
+            routerList: []
         }
     },
     components: {
@@ -48,7 +58,12 @@ export default {
         
     },
     mounted() {
-        console.log(1111, routes, this.routerList);
+        // console.log(1111, item);
+        console.log(constRouter, asyncRoutes);
+        let temp = [...constRouter, ...asyncRoutes]
+        console.log(temp);
+        
+        this.routerList = temp;
     }
 };
 </script>

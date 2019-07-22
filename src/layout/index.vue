@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import Menu from '@/components/Menu'
+import Menu from '@/components/Menu/index'
 
 export default {
     components: {
