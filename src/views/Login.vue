@@ -20,7 +20,8 @@ export default {
             console.log(this.$route);
             console.log(router);
             // this.router.push({path: this.$route.query.redirect})
-
+            this.$store.commit('SET_ROLE', this.value)
+            this.$store.commit('SET_ROUTE', this.value)
             router.push({path: this.$route.query.redirect})
             
         }

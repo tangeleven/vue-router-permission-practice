@@ -37,8 +37,8 @@
 </template>
 
 <script>
-
-import { constRouter, asyncRoutes } from '@/router.js'
+import store from '@/store'
+import { constRoutes, asyncRoutes } from '@/router.js'
 import MenuItem from './MenuItem.vue'
 
 
@@ -59,11 +59,14 @@ export default {
     },
     mounted() {
         // console.log(1111, item);
-        console.log(constRouter, asyncRoutes);
-        let temp = [...constRouter, ...asyncRoutes]
-        console.log(temp);
+        // console.log(constRoutes, asyncRoutes);
+        let temp = [...constRoutes, ...asyncRoutes]
+        // console.log(temp);
+
+
+        console.log('-- >>> ', store);
         
-        this.routerList = temp;
+        this.routerList = store.state.allRoutes;
     }
 };
 </script>

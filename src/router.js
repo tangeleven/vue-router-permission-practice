@@ -46,7 +46,8 @@ export const asyncRoutes = [
     component: Layout,
     redirect: '/my/index',
     meta: {
-      title: '我的'
+      title: '我的',
+      roles: ['admin', 'editor']
     },
     children: [
       {
@@ -88,14 +89,15 @@ export const asyncRoutes = [
         name: 'consult',
         component: () => import(/* webpackChunkName: "consult" */ './views/Consult.vue'),
         meta: {
-          title: '咨询'
+          title: '咨询',
+          roles: ['admin']
         }
       }
     ]
   },
 ]
 
-export const constRouter = [
+export const constRoutes = [
   {
     path: '/',
     component: Layout,
@@ -128,5 +130,5 @@ export const constRouter = [
 export default new Router({
   mode: 'history',
   base: process.env.BASE_URL,
-  routes: constRouter.concat(asyncRoutes)
+  routes: constRoutes
 })
